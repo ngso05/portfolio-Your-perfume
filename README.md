@@ -1,24 +1,43 @@
-# README
+# Your perfume
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+香水の感想投稿サイトです。
+香水のお気に入りポイントや香りの感想などを投稿できます。
+気になる投稿には いいね を押すことが出来ます。
+また、香りの種類やシーン別で検索をすることも可能です。
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+香水の香りや使用感を投稿し、他人と共有できるサイトです。
 
-* Configuration
+### テーマを選んだ理由
 
-* Database creation
+世界的に見て、日本人の香水消費量は少ないです。
+・1つの香水を購入するのに数万するものもある。
+・田舎だと試せる香水に限りがある。
+・公式サイトの香りについての説明が分かりづらい。
+このような理由から、「使ってみたいけど、どれを買えばいいのかわからない」という人が私の周りにもいたので、
+実際に使用した方のリアルな感想を共有し、購入の参考にできるサイトがあればいいなを思いこのテーマを選びました。
 
-* Database initialization
+### ターゲットユーザ
 
-* How to run the test suite
+- 香水が好きな方
+- 香水の購入を検討している方
 
-* Services (job queues, cache servers, search engines, etc.)
+### 主な利用シーン
 
-* Deployment instructions
+- 自分のお気に入りの香水を紹介したいとき
+- 自分に合った香水を調べたいとき
 
-* ...
+
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1Dhu4jLQVdihLv72taZ9ZEF8zguIHBOBzXBkXC5c8HNM/edit#gid=0
+
+## 開発環境
+
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JS ライブラリ：jQuery
+- IDE：Cloud9
