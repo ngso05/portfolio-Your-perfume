@@ -1,4 +1,4 @@
-<h1>新規投稿</h1>
+<h1>投稿編集</h1>
 <%= form_with model: @post, local:true do |f| %>
 <h4>投稿画像</h4>
 <%= f.attachment_field :image %>
@@ -70,5 +70,5 @@
 <%= f.text_field :title %>
 <h4>レビュー</h4>
 <%= f.text_area :review %>
-<%= f.submit '新規投稿' %>
+<%= f.submit '変更する' %>
 <% end %>

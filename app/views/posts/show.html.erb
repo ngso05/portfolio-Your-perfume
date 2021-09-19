@@ -1,0 +1,42 @@
+<div>
+  <p>ユーザーネーム  <%= @user.name %></p>
+  <p>性別  <%= @user.sex %></p>
+  <%= attachment_image_tag @post, :image, :size =>'200x200' %>
+  <canvas id="myChart" style="position: relative; height:100; width:150"></canvas>
+  <script>
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ["香り", "持続性", "価格", "使いやすさ"],
+      datasets:
+      [
+        {
+          label: '<%= @post.title %>',
+          backgroundColor: 'rgba(255,192,203,0.2)',
+          borderColor: 'rgba(255,192,203,0.2)',
+          borderColor: 'rgba(255,192,203)',
+          data: [<%= @post.rate_smell %>, <%= @post.rate_time %>, <%= @post.rate_time %>, <%= @post.rate_easy %>]
+        },
+      ]
+    },
+    options: {
+      scale: {
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 5
+        }
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+  </script>
+  <p>レビュー：<%= @post.review %></p>
+  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @post.user == current_user %>
+  　<%= link_to "編集する", edit_post_path(@post) %>
+    <%= link_to "削除する", post_path(@post), method: :delete %>
+  <% end %>
+</div>
