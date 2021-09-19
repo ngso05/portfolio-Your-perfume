@@ -1,0 +1,56 @@
+<h1>画像投稿フォーム</h1>
+<%= form_with model: @post, local:true do |f| %>
+  <h4>投稿画像</h4>
+  <%= f.attachment_field :image %>
+
+  <div class="review" id="star">
+    <h4>評価</h4>
+    <%= f.label :rate,'総合評価', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :rate, id: :review_star %>
+    <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'post[rate]',
+      half: true,
+    });
+    </script>
+
+
+    <%= f.label :rate,'香り', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :rate, id: :review_star %>
+    <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'post[rate]',
+      half: true,
+    });
+    </script>
+
+
+    <%= f.label :rate,'持続性', class:'col-md-3 col-form-label' %>
+    <%= f.hidden_field :rate, id: :review_star %>
+    <script>
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'post[rate]',
+      half: true,
+    });
+    </script>
+  </div>
+
+
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+  <h4>レビュー</h4>
+  <%= f.text_area :review %>
+  <%= f.submit '新規投稿' %>
+<% end %>

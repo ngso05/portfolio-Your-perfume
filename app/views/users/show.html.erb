@@ -1,0 +1,7 @@
+<div>
+  <p>ユーザーネーム  <%= @user.name %></p>
+  <p>性別  <%= @user.sex %></p>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "編集する", edit_user_path(@user) %></p>
+  <% end %>
+</div>
