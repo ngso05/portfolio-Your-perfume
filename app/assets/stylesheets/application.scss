@@ -16,8 +16,27 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+header {
+  width: 90%;
+  padding: 15px 0;
+  margin: 0 auto;
+}
 
-posy-wrap {
+.header-top-content {
+  list-style: none;
+  text-align: center;
+}
+
+.lists-center {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+.post-wrap {
   display: flex;
   flex-wrap: wrap;
 }

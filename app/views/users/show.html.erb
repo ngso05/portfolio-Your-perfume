@@ -7,4 +7,21 @@
     <p><%= link_to "編集する", edit_user_path(@user) %></p>
     <% end %>
   </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <h1>過去の投稿</h1>
+      <div class="post-wrap">
+        <% @posts.each do |post| %>
+        <div class="post-box">
+          <%= link_to post_path(post.id) do %>
+          <%= attachment_image_tag post, :image, :size =>'200x200' %>
+          <% end %>
+          <p>ユーザーネーム<%= post.user.name %></p>
+        </div>
+        <% end %>
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
 </div>
+

@@ -9,30 +9,44 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
   </head>
-
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to 'マイページ', user_path(current_user.id) %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-      <li>
-        <%= link_to '投稿一覧', new_user_session_path %>
-      </li>
-      <li>
-        <%= link_to 'About', about_path %>
-      </li>
-
-    <% end %>
+    <header>
+    <div class="header-top-content">
+      <%= link_to root_path, class:"header-title" do %>
+      <div>Your perfume</div>
+      <% end %>
+      <ul class="lists-center">
+        <% if user_signed_in? %>
+        <li>
+          <%= link_to 'マイページ', user_path(current_user.id) %>
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+        <li>
+          <%= link_to '投稿一覧', posts_path %>
+        </li>
+        <li>
+          <%= link_to '投稿する', new_post_path %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+        <li>
+          <%= link_to '投稿一覧', posts_path %>
+        </li>
+        <li>
+          <%= link_to 'About', about_path %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
     <%= yield %>
+    </header>
   </body>
-</html>
+  </html>
+

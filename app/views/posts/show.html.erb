@@ -33,10 +33,89 @@
     }
   });
   </script>
+  <div id="star-rate-smell<%= @post.id %>">
+    <p>香り</p>
+  </div>
+  <script>
+  $('#star-rate-smell<%= @post.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @post.rate_smell %>,
+  });
+  </script>
+  <div id="star-rate-time<%= @post.id %>">
+    <p>持続性</p>
+  </div>
+  <script>
+  $('#star-rate-time<%= @post.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @post.rate_time %>,
+  });
+  </script>
+  <div id="star-rate-price<%= @post.id %>">
+    <p>価格</p>
+  </div>
+  <script>
+  $('#star-rate-price<%= @post.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @post.rate_price %>,
+  });
+  </script>
+  <div id="star-rate-easy<%= @post.id %>">
+    <p>使いやすさ</p>
+  </div>
+  <script>
+  $('#star-rate-easy<%= @post.id %>').raty({
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @post.rate_easy %>,
+  });
+  </script>
+
+
   <p>レビュー：<%= @post.review %></p>
   <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post.user == current_user %>
   　<%= link_to "編集する", edit_post_path(@post) %>
     <%= link_to "削除する", post_path(@post), method: :delete %>
+  <% end %>
+</div>
+
+<div>
+  <p>コメント件数：<%= @post.post_comments.count %></p>
+  <% @post.post_comments.each do |post_comment| %>
+  <p><%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "no_image.jpg", style: "height: 100px"%></p>
+  <%= post_comment.user.name %>
+  <%= post_comment.comment %>
+  <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <% if post_comment.user == current_user %>
+  <div>
+    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
   <% end %>
 </div>
