@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
-    # binding.irb
+    #binding.irb
   end
 
   def destroy
