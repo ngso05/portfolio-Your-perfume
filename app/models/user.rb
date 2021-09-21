@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
          has_many :posts, dependent: :destroy
          has_many :post_comments, dependent: :destroy
+         has_many :favorites, dependent: :destroy
 
-         enum sex: { 男性: 0, 女性: 1}
+         enum sex: { man: 0, woman: 1}
+         attachment :image
 end

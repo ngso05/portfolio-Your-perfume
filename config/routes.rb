@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'about' => 'homes#about'
   resources :posts do
+    resource :favorites, only: [:create, :destroy]
+    collection do
+      get 'search'
+    end
     resources :post_comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]

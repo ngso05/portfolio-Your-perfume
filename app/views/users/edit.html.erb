@@ -1,7 +1,7 @@
 <h2>プロフィール編集</h2>
 <%= form_with model:@user, local:true do |f| %>
   <label for="inputImage">プロフィール画像</label>
-  <%= f.file_field :image_id %>
+  <%= f.file_field :image %>
   <label for="inputName">ユーザーネーム</label>
   <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
   <label for="inputEmail">メールアドレス</label>
