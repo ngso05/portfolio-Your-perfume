@@ -15,14 +15,16 @@ class UsersController < ApplicationController
   end
 
   def unsubscribe
-    @user = User.find_by(name: params[:name])
   end
 
   def withdraw
-    @user = User.find_by(name: params[:name])
-    @user.update(is_active: false)
-    reset_session
-    redirect_to root_path
+    @user = current_user
+    if @user.update(is_active: "退会")
+      reset_session
+      redirect_to root_path
+    else
+      render 'edit'
+    end
   end
 
   private

@@ -1,12 +1,17 @@
   <body>
     <div class="main-visual">
       <div class="main-visual-content">
-        <h1 class="main-visual-text">
-          Your perfume
-        </h1>
-        <p class="main-visual-name">
-          香水ファンが集まる香水レビューサイト
-        </p>
+        <div class="main-visual-introduce col-lg-12 col-md-12 col-xs-12">
+          <h1><span>香水ファンが集まる香水レビューサイト</span></h1>
+          <div class="post_link col-lg-12 col-md-12 col-xs-12">
+            <%=link_to("posts/") do %>
+            <button class="post_link1 btn-dark rounded-0 btn-lg" >投稿を見る</button>
+            <%end%>
+            <%=link_to("about") do %>
+            <button class="post_link2 btn-dark rounded-0 btn-lg" >Your perfumeとは</button>
+            <%end%>
+          </div>
+        </div>
       </div>
     </div>
   </body>

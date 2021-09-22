@@ -2,7 +2,7 @@ ja:
   activerecord:
     attributes:
       user:
-        image_id: "プロフィール画像"
+        image: "プロフィール画像"
         name: "ユーザーネーム"
         current_password: "現在のパスワード"
         email: "メールアドレス"
