@@ -291,38 +291,36 @@ span {
 
 .post-detail {
   width: 100%;
-  height: 1800px;
+  height: 780px;
   border: 5px solid #eee;
   margin: 20px auto;
 }
 
 .post-detail:before {
-  border-top: 5px solid #f0b8bf;
-  border-left: 5px solid #f0b8bf;
- 	content: '';
- 	display: block;
- 	position: absolute;
- 	top: -5px;
- 	left: -5px;
- 	width: 20px;
- 	height: 20px;
- 	z-index: 1;
+	border-bottom: 5px solid #f0b8bf;
+	border-right: 5px solid #f0b8bf;
+	content: '';
+	display: block;
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	width: 20px;
+	height: 20px;
+	z-index: 1;
 }
 
 .profile-detail {
   font-size: 20px;
-  margin: 20px;
+  margin: 23px 0 0 30px;
+  text-align: left;
 }
 
 .star-label {
   font-size: 20px;
-  margin: 20px;
+  margin-top: 25px;
 }
 
 .comment-box {
-  border: solid 1px black;
-  border-radius: 10px;
-  height: 150px;
   margin: 20px;
 }
 
@@ -330,10 +328,96 @@ span {
   margin: 10px;
 }
 
-.review-box {
-  height: 800px;
-}
-
 .form-control {
   margin-bottom: 10px;
+}
+
+.chart {
+  width: 100%;
+  height: 380px;
+}
+
+.review-detail {
+  margin-top: 20px;
+}
+
+.review-text {
+  font-size: 20px;
+  margin: 23px 0 0 50px;
+  text-align: left;
+  border: solid 1px black;
+  border-radius: 10px;
+  width: 100%;
+  height: 150px;
+}
+
+.post-edit-box {
+  margin: 20px auto;
+  border: 5px solid #eee;
+  height: 830px;
+  width: 100%;
+}
+
+.post-edit-box:before {
+	border-top: 5px solid #f0b8bf;
+	border-left: 5px solid #f0b8bf;
+	content: '';
+	display: block;
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	width: 20px;
+	height: 20px;
+	z-index: 1;
+}
+
+.login-box {
+  border: solid 1px black;
+  border-radius: 10px;
+  margin: 20px 25px;
+  width: 200px;
+  text-align: center;
+}
+
+.login {
+  margin: 20px auto;
+  border: solid 1px black;
+  border-radius: 10px;
+  height: 350px;
+}
+
+.login-field {
+  margin: 5px 10px;
+}
+
+.sign-up-box {
+  border: solid 1px black;
+  border-radius: 10px;
+  margin: 20px 75px;
+  width: 200px;
+}
+
+.sign-up {
+  margin: 20px auto;
+  border: solid 1px black;
+  border-radius: 10px;
+  height: 550px;
+}
+
+.field {
+  margin: 5px 10px;
+}
+
+.actions {
+  text-align: center;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.sign-up-link {
+  text-align: center;
+  margin-top: 5px;
 }

@@ -10,6 +10,8 @@ ja:
         password_confirmation: "確認用パスワード"
         sex: "性別"
         remember_me: "ログインを記憶"
+        forgot_your_password: "パスワードを忘れましたか?"
+        sign_up: "アカウント登録"
     models:
       user: "ユーザ"
   devise:
@@ -56,6 +58,8 @@ ja:
     sessions:
       new:
         sign_in: "ログイン"
+        forgot_your_password: "パスワードを忘れましたか?"
+        sign_up: "アカウント登録"
     shared:
       links:
         back: "戻る"

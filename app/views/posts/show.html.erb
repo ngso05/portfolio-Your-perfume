@@ -70,79 +70,80 @@
         });
         </script>
       </div>
-    <div class="chart col-lg-4 col-md-4 col-4">
-      <div style="position: relative; height:200; width:200">
-        <canvas id="myChart"></canvas>
-        <script>
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
-          type: 'radar',
-          data: {
-            labels: ["香り", "持続性", "価格", "使いやすさ"],
-            datasets:
-            [
-              {
-                label: '<%= @post.title %>',
-                backgroundColor: 'rgba(255,192,203,0.2)',
-                borderColor: 'rgba(255,192,203,0.2)',
-                borderColor: 'rgba(255,192,203)',
-                data: [<%= @post.rate_smell %>, <%= @post.rate_time %>, <%= @post.rate_time %>, <%= @post.rate_easy %>]
-              },
-            ]
-          },
-          options: {
-            scale: {
-              pointLabels: {
-                fontSize: 20,
-              },
-              ticks: {
-                fontSize: 12,
-                suggestedMin: 0,
-                suggestedMax: 5
-              }
+      <div class="chart col-lg-4 col-md-4 col-4">
+        <div style="position:absolute; top:60px; left:10px; width:500px; height:500px;">
+          <canvas id="myChart"></canvas>
+          <script>
+          var ctx = document.getElementById("myChart");
+          var myChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+              labels: ["香り", "持続性", "価格", "使いやすさ"],
+              datasets:
+              [
+                {
+                  label: '<%= @post.title %>',
+                  backgroundColor: 'rgba(255,192,203,0.2)',
+                  borderColor: 'rgba(255,192,203,0.2)',
+                  borderColor: 'rgba(255,192,203)',
+                  data: [<%= @post.rate_smell %>, <%= @post.rate_time %>, <%= @post.rate_time %>, <%= @post.rate_easy %>]
+                },
+              ]
             },
-            legend: {
-              display: false
+            options: {
+              scale: {
+                pointLabels: {
+                  fontSize: 10,
+                },
+                ticks: {
+                  suggestedMin: 0,
+                  suggestedMax: 5
+                }
+              },
+              legend: {
+                display: false
+              }
             }
-          }
-        });
-        </script>
-      </div>
-    </div>
-  </div>
-</div>
-    <div class="col-lg-8 col-md-8 col-8">
-      <p class="profile-detail">レビュー：<%= @post.review %></p>
-      <p class="profile-detail">投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-      <% if @post.user == current_user %>
-      <div class="profile-detail">
-        <%= link_to "編集する", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
-        <%= link_to "削除する", post_path(@post), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
-      </div>
-      <% end %>
-      <div class="profile-detail">
-        <div id="favorites_buttons_<%= @post.id %>">
-          <%= render "favorites/favorite", post: @post %>
+          });
+          </script>
         </div>
       </div>
     </div>
-    <div class="review-box col-l12 col-m12 col12">
-      <div>
-        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-        <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
-      </div>
-      <div>
-        <%= f.submit "送信する" %>
-      </div>
+    <div class="row">
+      <div class="review-detail col-lg-11 col-md-11 col-11">
+        <p class="review-text"><%= @post.review %></p>
+        <p class="profile-detail"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
+        <div class="profile-detail">
+          <div id="favorites_buttons_<%= @post.id %>">
+            <%= render "favorites/favorite", post: @post %>
+          </div>
+        </div>
+        <% if @post.user == current_user %>
+        <div class="profile-detail">
+          <%= link_to "編集する", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+          <%= link_to "削除する", post_path(@post), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
+        </div>
         <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="review-box col-lg-12 col-m12 col12">
+    <div>
+      <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+      <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
     </div>
     <div>
+      <%= f.submit "送信する" %>
+    </div>
+      <% end %>
+    </div>
+    <div class="user-comment">
       <p class="comment-count">コメント件数：<%= @post.post_comments.count %></p>
       <div class="comment-box">
         <% @post.post_comments.each do |post_comment| %>
-        <%= post_comment.user.name %>
-        <%= post_comment.comment %>
-        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <p class="profile-detail">ユーザーネーム:     <%= post_comment.user.name %></p>
+        <p class="profile-detail">コメント:     <%= post_comment.comment %></p>
+        <p class="profile-detail"><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
         <% if post_comment.user == current_user %>
         <div>
           <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
@@ -151,5 +152,4 @@
         <% end %>
       </div>
     </div>
-  </div>
 </div>
