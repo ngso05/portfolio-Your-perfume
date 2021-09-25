@@ -1,20 +1,37 @@
-<h2>プロフィール編集</h2>
-<%= form_with model:@user, local:true do |f| %>
-  <label for="inputImage">プロフィール画像</label>
-  <%= f.file_field :image %>
-  <label for="inputName">ユーザーネーム</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
-  <label for="inputEmail">メールアドレス</label>
-  <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder:"メールアドレス"%>
-  <label for="inputSex">性別</label>
-    <%= f.label :"男性"  %>
-    <%= f.radio_button :sex, :man %>
-    <%= f.label :"女性"  %>
-    <%= f.radio_button :sex, :woman %>
+<div class="container">
+  <div class="row">
+    <div class="profile-update col-lg12 col-md12 col-12">
+      <h2 class="edit-title">プロフィール編集</h2>
+        <%= form_with model:@user, local:true do |f| %>
+        <div class="edit-box">
+          <label for="inputImage">プロフィール画像</label>
+          <%= f.file_field :image %>
+        </div>
+        <div class="edit-box">
+          <label for="inputName">ユーザーネーム</label>
+          <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
+        </div>
+        <div class="edit-box">
+          <label for="inputEmail">メールアドレス</label>
+          <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder:"メールアドレス"%>
+        </div>
+        <div class="edit-box">
+          <label for="inputSex">性別</label>
+          <%= f.label :"男性"  %>
+          <%= f.radio_button :sex, :man %>
+          <%= f.label :"女性"  %>
+          <%= f.radio_button :sex, :woman %>
+        </div>
+        <div class="edit-box">
+          <%= f.submit "変更を保存", class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+          <% end %>
+        </div>
+        <div class="edit-box">
+          <%= link_to "退会する", unsubscribe_users_path, class: "glyphicon glyphicon-tint btn btn-danger" %>
+        </div>
+    </div>
   </div>
-  <%= f.submit "変更を保存" %>
-  <% end %>
-  <div class="unsubscribe">
-    <%= link_to "退会する", unsubscribe_users_path %>
-  </div>
+</div>
+
+
 

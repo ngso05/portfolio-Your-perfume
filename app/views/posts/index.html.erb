@@ -1,28 +1,34 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-4">
-      <h1 class="post-title">おすすめ投稿</h1>
-      <% @random.each do |post| %>
-      <div class="post-box">
-        <%= link_to post_path(post.id) do %>
-        <%= attachment_image_tag post, :image, :size =>'200x200' %>
-        <% end %>
-        <p>ユーザーネーム<%= post.user.name %></p>
-      </div>
-      <% end %>
-    </div>
-    <div class="col-xs-8">
-      <h1 class="post-title">投稿一覧</h1>
-      <div class="post-wrap">
-        <% @posts.each do |post| %>
-        <div class="post-box">
-          <%= link_to post_path(post.id) do %>
-          <%= attachment_image_tag post, :image, :size =>'200x200' %>
+ <div class="container">
+   <div class-"post-all">
+    <div class="row">
+      <div class="sidebar col-lg-4 col-md-4 col-4">
+        <h1 class="post-title-side">おすすめ投稿</h1>
+        <% @random.each do |postrandom| %>
+        <div class="post-box-side">
+          <p class="post-title"><%= postrandom.title %></p>
+          <%= link_to post_path(postrandom.id) do %>
+          <%= attachment_image_tag postrandom, :image, :size =>'180x180' %>
           <% end %>
-          <p>ユーザーネーム<%= post.user.name %></p>
+          <p class="user-name">ユーザーネーム   <%= postrandom.user.name %></p>
+          <p class="post-review"><%= postrandom.review %></p>
         </div>
         <% end %>
-        <%= paginate @posts %>
+      </div>
+      <div class="mainbar col-lg-8 col-md-8 col-8">
+        <h1 class="post-title-main">投稿一覧</h1>
+        <div class="post-wrap">
+          <% @posts.each do |postall| %>
+          <div class="post-box-main">
+            <p class="post-title"><%= postall.title %></p>
+            <%= link_to post_path(postall.id) do %>
+            <%= attachment_image_tag postall, :image, :size =>'180x180' %>
+            <% end %>
+            <p class="user-name">ユーザーネーム   <%= postall.user.name %></p>
+            <p class="post-review"><%= postall.review %></p>
+          </div>
+          <% end %>
+          <%= paginate @posts %>
+        </div>
       </div>
     </div>
   </div>

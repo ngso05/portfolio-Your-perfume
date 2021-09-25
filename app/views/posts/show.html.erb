@@ -1,125 +1,155 @@
-<div>
-  <p>ユーザーネーム  <%= @user.name %></p>
-  <p>性別  <%= @user.sex %></p>
-  <%= attachment_image_tag @post, :image, :size =>'200x200' %>
-  <div id="favorites_buttons_<%= @post.id %>">
-    　<%= render "favorites/favorite", post: @post %>
+<div class="container">
+  <div class="post-detail">
+    <div class="row">
+      <div class="post-detail-box col-lg-4 col-md-4 col-4">
+        <div>
+          <p class="profile-detail">ユーザーネーム:       <%= @user.name %></p>
+        </div>
+        <div>
+        　<p class="profile-detail">性別:       <%= @user.sex_i18n %></p>
+        </div>
+        <div class="profile-detail">
+          <%= attachment_image_tag @post, :image, :size =>'200x200' %>
+        </div>
+      </div>
+      <div class="star-rate mainbar col-lg-4 col-md-4 col-4">
+        <div id="star-rate-smell<%= @post.id %>">
+          <p class="star-label">香り</p>
+        </div>
+        <script>
+        $('#star-rate-smell<%= @post.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= @post.rate_smell %>,
+        });
+        </script>
+        <div id="star-rate-time<%= @post.id %>">
+          <p class="star-label">持続性</p>
+        </div>
+        <script>
+        $('#star-rate-time<%= @post.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= @post.rate_time %>,
+        });
+        </script>
+        <div id="star-rate-price<%= @post.id %>">
+          <p class="star-label">価格</p>
+        </div>
+        <script>
+        $('#star-rate-price<%= @post.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= @post.rate_price %>,
+        });
+        </script>
+        <div id="star-rate-easy<%= @post.id %>">
+          <p class="star-label">使いやすさ</p>
+        </div>
+        <script>
+        $('#star-rate-easy<%= @post.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= @post.rate_easy %>,
+        });
+        </script>
+      </div>
+    <div class="chart col-lg-4 col-md-4 col-4">
+      <div style="position: relative; height:200; width:200">
+        <canvas id="myChart"></canvas>
+        <script>
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+          type: 'radar',
+          data: {
+            labels: ["香り", "持続性", "価格", "使いやすさ"],
+            datasets:
+            [
+              {
+                label: '<%= @post.title %>',
+                backgroundColor: 'rgba(255,192,203,0.2)',
+                borderColor: 'rgba(255,192,203,0.2)',
+                borderColor: 'rgba(255,192,203)',
+                data: [<%= @post.rate_smell %>, <%= @post.rate_time %>, <%= @post.rate_time %>, <%= @post.rate_easy %>]
+              },
+            ]
+          },
+          options: {
+            scale: {
+              pointLabels: {
+                fontSize: 20,
+              },
+              ticks: {
+                fontSize: 12,
+                suggestedMin: 0,
+                suggestedMax: 5
+              }
+            },
+            legend: {
+              display: false
+            }
+          }
+        });
+        </script>
+      </div>
+    </div>
   </div>
-
-  <canvas id="myChart" style="position: relative; height:100; width:150"></canvas>
-  <script>
-  var ctx = document.getElementById("myChart");
-  var myChart = new Chart(ctx, {
-    type: 'radar',
-    data: {
-      labels: ["香り", "持続性", "価格", "使いやすさ"],
-      datasets:
-      [
-        {
-          label: '<%= @post.title %>',
-          backgroundColor: 'rgba(255,192,203,0.2)',
-          borderColor: 'rgba(255,192,203,0.2)',
-          borderColor: 'rgba(255,192,203)',
-          data: [<%= @post.rate_smell %>, <%= @post.rate_time %>, <%= @post.rate_time %>, <%= @post.rate_easy %>]
-        },
-      ]
-    },
-    options: {
-      scale: {
-        ticks: {
-          suggestedMin: 0,
-          suggestedMax: 5
-        }
-      },
-      legend: {
-        display: false
-      }
-    }
-  });
-  </script>
-  <div id="star-rate-smell<%= @post.id %>">
-    <p>香り</p>
-  </div>
-  <script>
-  $('#star-rate-smell<%= @post.id %>').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-    readOnly: true,
-    score: <%= @post.rate_smell %>,
-  });
-  </script>
-  <div id="star-rate-time<%= @post.id %>">
-    <p>持続性</p>
-  </div>
-  <script>
-  $('#star-rate-time<%= @post.id %>').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-    readOnly: true,
-    score: <%= @post.rate_time %>,
-  });
-  </script>
-  <div id="star-rate-price<%= @post.id %>">
-    <p>価格</p>
-  </div>
-  <script>
-  $('#star-rate-price<%= @post.id %>').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-    readOnly: true,
-    score: <%= @post.rate_price %>,
-  });
-  </script>
-  <div id="star-rate-easy<%= @post.id %>">
-    <p>使いやすさ</p>
-  </div>
-  <script>
-  $('#star-rate-easy<%= @post.id %>').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
-    readOnly: true,
-    score: <%= @post.rate_easy %>,
-  });
-  </script>
-
-
-  <p>レビュー：<%= @post.review %></p>
-  <p>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-  　<%= link_to "編集する", edit_post_path(@post) %>
-    <%= link_to "削除する", post_path(@post), method: :delete %>
-  <% end %>
 </div>
-
-<div>
-  <p>コメント件数：<%= @post.post_comments.count %></p>
-  <p><%= attachment_image_tag @post, :image, :size =>'100x100' %></p>
-  <% @post.post_comments.each do |post_comment| %>
-  <%= post_comment.user.name %>
-  <%= post_comment.comment %>
-  <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-  <% if post_comment.user == current_user %>
-  <div>
-    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <div class="col-lg-8 col-md-8 col-8">
+      <p class="profile-detail">レビュー：<%= @post.review %></p>
+      <p class="profile-detail">投稿日時：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+      <% if @post.user == current_user %>
+      <div class="profile-detail">
+        <%= link_to "編集する", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+        <%= link_to "削除する", post_path(@post), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
+      </div>
+      <% end %>
+      <div class="profile-detail">
+        <div id="favorites_buttons_<%= @post.id %>">
+          <%= render "favorites/favorite", post: @post %>
+        </div>
+      </div>
+    </div>
+    <div class="review-box col-l12 col-m12 col12">
+      <div>
+        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+        <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit "送信する" %>
+      </div>
+        <% end %>
+    </div>
+    <div>
+      <p class="comment-count">コメント件数：<%= @post.post_comments.count %></p>
+      <div class="comment-box">
+        <% @post.post_comments.each do |post_comment| %>
+        <%= post_comment.user.name %>
+        <%= post_comment.comment %>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <% if post_comment.user == current_user %>
+        <div>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
-  <% end %>
 </div>

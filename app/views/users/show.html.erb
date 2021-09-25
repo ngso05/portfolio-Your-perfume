@@ -1,27 +1,36 @@
 <div class="container">
   <div class="row">
-    <%= attachment_image_tag @user, :image, fallback: "no_image.jpg", style: "height: 200px"%>
-    <p>ユーザーネーム  <%= @user.name %></p>
-    <p>性別  <%= @user.sex %></p>
-    <% if @user.id == current_user.id %>
-    <p><%= link_to "編集する", edit_user_path(@user) %></p>
-    <% end %>
-  </div>
-  <div class="row">
-    <div class="col-xs-8">
-      <h1>過去の投稿</h1>
-      <div class="post-wrap">
-        <% @posts.each do |post| %>
-        <div class="post-box">
-          <%= link_to post_path(post.id) do %>
-          <%= attachment_image_tag post, :image, :size =>'200x200' %>
-          <% end %>
-          <p>ユーザーネーム<%= post.user.name %></p>
-        </div>
+    <div class="profile col-lg12 col-md12 col-12">
+      <%= attachment_image_tag @user, :image, fallback: "no_image.jpg", style: "height: 200px" %>
+      <div>
+        <p class="profile-text">ユーザーネーム:       <%= @user.name %></p>
+      </div>
+      <div>
+        <p class="profile-text">性別:       <%= @user.sex_i18n %></p>
+      </div>
+      <div>
+        <% if @user.id == current_user.id %>
+        <p class="profile-text"><%= link_to "編集する", edit_user_path(@user), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %></p>
         <% end %>
-        <%= paginate @posts %>
       </div>
     </div>
   </div>
+    <div class="col-lg-12 col-md12 col-12">
+      <h1>過去の投稿</h1>
+      <div class="post-wrap">
+        <% @posts.each do |postall| %>
+          <div class="post-box">
+            <p class="post-title"><%= postall.title %></p>
+            <%= link_to post_path(postall.id) do %>
+            <%= attachment_image_tag postall, :image, :size =>'180x180' %>
+            <% end %>
+            <p class="user-name">ユーザーネーム   <%= postall.user.name %></p>
+            <p class="post-review"><%= postall.review %></p>
+          </div>
+          <% end %>
+          <%= paginate @posts %>
+        </div>
+    </div>
+
 </div>
 

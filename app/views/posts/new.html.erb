@@ -1,74 +1,82 @@
-<h1>新規投稿</h1>
-<%= form_with model: @post, local:true do |f| %>
-<h4>投稿画像</h4>
-<%= f.attachment_field :image %>
-
-<div class="review_star">
-  <div class="review" id="star1">
-    <h4>評価</h4>
-    <%= f.label :rate_smell,'香り', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :rate_smell, id: :review_star1 %>
-    <script>
-    $('#star1').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'post[rate_smell]',
-      half: true,
-    });
-    </script>
+<div class="container">
+  <div class-"row">
+    <div class="post-new-box col-lg12 col-md12 col-12">
+      <h1 class="new-title">新規投稿</h1>
+      <%= form_with model: @post, local:true do |f| %>
+      <div>
+        <h4 class="new-box">投稿画像</h4><%= f.attachment_field :image %>
+      </div>
+      <div class="review_star">
+        <div class="review" id="star1">
+          <h4 class="new-box">評価</h4>
+          <%= f.label :rate_smell,'香り', class:'col-md-2 col-form-label' %>
+          <%= f.hidden_field :rate_smell, id: :review_star1 %>
+          <script>
+          $('#star1').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'post[rate_smell]',
+            half: true,
+          });
+          </script>
+        </div>
+        <div class="review" id="star2">
+          <%= f.label :rate_time,'持続性', class:'col-md-2 col-form-label' %>
+          <%= f.hidden_field :rate_time, id: :review_star2 %>
+          <script>
+          $('#star2').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'post[rate_time]',
+            half: true,
+          });
+          </script>
+        </div>
+        <div class="review" id="star3">
+          <%= f.label :rate_price,'価格', class:'col-md-2 col-form-label' %>
+          <%= f.hidden_field :rate_price, id: :review_star3 %>
+          <script>
+          $('#star3').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'post[rate_price]',
+            half: true,
+          });
+          </script>
+        </div>
+        <div class="review" id="star4">
+          <%= f.label :rate_easy,'使いやすさ', class:'col-md-2 col-form-label' %>
+          <%= f.hidden_field :rate_easy, id: :review_star4 %>
+          <script>
+          $('#star4').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            scoreName: 'post[rate_easy]',
+            half: true,
+          });
+          </script>
+        </div>
+      </div>
+      <div>
+        <h4 class="new-box">タイトル</h4>
+        <%= f.text_field :title , size: "5x3", class: "form-control"  %>
+      </div>
+       <div>
+         <h4 class="new-box">レビュー</h4>
+         <%= f.text_area :review , size: "10x5", class: "form-control" %>
+       </div>
+       <div>
+         <%= f.submit '新規投稿' %>
+         <% end %>
+       </div>
+    </div>
   </div>
-
-　<div class="review" id="star2">
-    <%= f.label :rate_time,'持続性', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :rate_time, id: :review_star2 %>
-    <script>
-    $('#star2').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'post[rate_time]',
-      half: true,
-    });
-    </script>
-  </div>
-
- <div class="review" id="star3">
-    <%= f.label :rate_price,'価格', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :rate_price, id: :review_star3 %>
-    <script>
-    $('#star3').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'post[rate_price]',
-      half: true,
-    });
-    </script>
-  </div>
-
-  <div class="review" id="star4">
-    <%= f.label :rate_easy,'使いやすさ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :rate_easy, id: :review_star4 %>
-    <script>
-    $('#star4').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'post[rate_easy]',
-      half: true,
-    });
-    </script>
-  </div>
-
 </div>
-<h4>タイトル</h4>
-<%= f.text_field :title %>
-<h4>レビュー</h4>
-<%= f.text_area :review %>
-<%= f.submit '新規投稿' %>
-<% end %>
