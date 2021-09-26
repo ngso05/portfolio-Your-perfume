@@ -11,67 +11,73 @@
         <div class="profile-detail">
           <%= attachment_image_tag @post, :image, :size =>'200x200' %>
         </div>
+        <div class="star-rate-box">
+          <div id="star-rate-smell<%= @post.id %>">
+            <p class="star-label">香り</p>
+          </div>
+          <script>
+          $('#star-rate-smell<%= @post.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @post.rate_smell %>,
+          });
+          </script>
+        </div>
+        <div class="star-rate-box">
+          <div id="star-rate-time<%= @post.id %>">
+            <p class="star-label">持続性</p>
+          </div>
+          <script>
+          $('#star-rate-time<%= @post.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @post.rate_time %>,
+          });
+          </script>
+        </div> 
+        <div class="star-rate-box">
+          <div id="star-rate-price<%= @post.id %>">
+            <p class="star-label">価格</p>
+          </div>
+          <script>
+          $('#star-rate-price<%= @post.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @post.rate_price %>,
+          });
+          </script>
+        </div>
+        <div class="star-rate-box">
+          <div id="star-rate-easy<%= @post.id %>">
+            <p class="star-label">使いやすさ</p>
+          </div>
+          <script>
+          $('#star-rate-easy<%= @post.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= @post.rate_easy %>,
+          });
+          </script>
+        </div>
       </div>
-      <div class="star-rate mainbar col-lg-4 col-md-4 col-4">
-        <div id="star-rate-smell<%= @post.id %>">
-          <p class="star-label">香り</p>
-        </div>
-        <script>
-        $('#star-rate-smell<%= @post.id %>').raty({
-          size: 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: <%= @post.rate_smell %>,
-        });
-        </script>
-        <div id="star-rate-time<%= @post.id %>">
-          <p class="star-label">持続性</p>
-        </div>
-        <script>
-        $('#star-rate-time<%= @post.id %>').raty({
-          size: 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: <%= @post.rate_time %>,
-        });
-        </script>
-        <div id="star-rate-price<%= @post.id %>">
-          <p class="star-label">価格</p>
-        </div>
-        <script>
-        $('#star-rate-price<%= @post.id %>').raty({
-          size: 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: <%= @post.rate_price %>,
-        });
-        </script>
-        <div id="star-rate-easy<%= @post.id %>">
-          <p class="star-label">使いやすさ</p>
-        </div>
-        <script>
-        $('#star-rate-easy<%= @post.id %>').raty({
-          size: 36,
-          starOff:  '<%= asset_path('star-off.png') %>',
-          starOn : '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: <%= @post.rate_easy %>,
-        });
-        </script>
-      </div>
-      <div class="chart col-lg-4 col-md-4 col-4">
-        <div style="position:absolute; top:60px; left:10px; width:500px; height:500px;">
+      <div class="chart col-lg-8 col-md-8 col-8">
+        <div style="position: relative; top: 200px; width: 100%; height: 100%;">
           <canvas id="myChart"></canvas>
           <script>
           var ctx = document.getElementById("myChart");
@@ -93,11 +99,12 @@
             options: {
               scale: {
                 pointLabels: {
-                  fontSize: 10,
+                  fontSize: 20,
                 },
                 ticks: {
                   suggestedMin: 0,
-                  suggestedMax: 5
+                  suggestedMax: 5,
+                  fontSize: 20,
                 }
               },
               legend: {
@@ -109,26 +116,32 @@
         </div>
       </div>
     </div>
-    <div class="row">
       <div class="review-detail col-lg-11 col-md-11 col-11">
         <p class="review-text"><%= @post.review %></p>
-        <p class="profile-detail"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-        <div class="profile-detail">
+        <p class="review-detail-bottom"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
+        <div class="review-detail-bottom">
+          <% if user_signed_in? %>
           <div id="favorites_buttons_<%= @post.id %>">
             <%= render "favorites/favorite", post: @post %>
           </div>
+          <% end %>
         </div>
         <% if @post.user == current_user %>
-        <div class="profile-detail">
+        <div class="review-detail-bottom">
           <%= link_to "編集する", edit_post_path(@post), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
-          <%= link_to "削除する", post_path(@post), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
+          <%= link_to "削除する", post_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "glyphicon glyphicon-tint btn btn-danger" %>
         </div>
         <% end %>
       </div>
     </div>
-  </div>
+    <%= render 'posts/error', model: @post %>
+  <% if flash[:notice] %>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
+  <% end %>
   <div class="review-box col-lg-12 col-m12 col12">
-    <div>
+    <div class="comment-form">
       <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
       <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
     </div>
@@ -141,15 +154,16 @@
       <p class="comment-count">コメント件数：<%= @post.post_comments.count %></p>
       <div class="comment-box">
         <% @post.post_comments.each do |post_comment| %>
-        <p class="profile-detail">ユーザーネーム:     <%= post_comment.user.name %></p>
-        <p class="profile-detail">コメント:     <%= post_comment.comment %></p>
-        <p class="profile-detail"><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+        <p class="comment_user">ユーザーネーム:     <%= post_comment.user.name %></p>
+        <p class="comment_user">コメント:     <%= post_comment.comment %></p>
+        <p class="comment_user"><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
         <% if post_comment.user == current_user %>
         <div>
-          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), data: {confirm: '本当に削除しますか？'}, method: :delete, class: "glyphicon glyphicon-tint btn btn-danger" %>
         </div>
         <% end %>
         <% end %>
       </div>
     </div>
+  </div>
 </div>

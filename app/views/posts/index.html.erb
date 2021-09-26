@@ -1,9 +1,10 @@
  <div class="container">
    <div class-"post-all">
     <div class="row">
-      <div class="sidebar col-lg-4 col-md-4 col-4">
-        <h1 class="post-title-side">おすすめ投稿</h1>
+      <div class="sidebar col-lg-3 col-md-3 col-3">
+        <h2 class="post-title-side">おすすめ投稿</h1>
         <% @random.each do |postrandom| %>
+        <% next if postrandom.user.is_active == "退会" %>
         <div class="post-box-side">
           <p class="post-title"><%= postrandom.title %></p>
           <%= link_to post_path(postrandom.id) do %>
@@ -14,10 +15,11 @@
         </div>
         <% end %>
       </div>
-      <div class="mainbar col-lg-8 col-md-8 col-8">
-        <h1 class="post-title-main">投稿一覧</h1>
+      <div class="mainbar col-lg-9 col-md-9 col-9">
+        <h2 class="post-title-main">投稿一覧</h1>
         <div class="post-wrap">
           <% @posts.each do |postall| %>
+          <% next if postall.user.is_active == "退会" %>
           <div class="post-box-main">
             <p class="post-title"><%= postall.title %></p>
             <%= link_to post_path(postall.id) do %>
