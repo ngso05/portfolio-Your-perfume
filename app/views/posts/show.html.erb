@@ -134,21 +134,16 @@
         <% end %>
       </div>
     </div>
-    <%= render 'posts/error', model: @post %>
-  <% if flash[:notice] %>
-  <p id="notice">
-    <%= flash[:notice] %>
-  </p>
-  <% end %>
-  <div class="review-box col-lg-12 col-m12 col12">
-    <div class="comment-form">
-      <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-      <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
-    </div>
-    <div>
-      <%= f.submit "送信する" %>
-    </div>
-      <% end %>
+    <% if user_signed_in? %>
+    <div class="review-box col-lg-12 col-m12 col12">
+      <div class="comment-form">
+        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+        <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
+      </div>
+      <div>
+        <%= f.submit "送信する" %>
+      </div>
+        <% end %>
     </div>
     <div class="user-comment">
       <p class="comment-count">コメント件数：<%= @post.post_comments.count %></p>
@@ -166,4 +161,5 @@
       </div>
     </div>
   </div>
+  <% end %>
 </div>

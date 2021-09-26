@@ -5,7 +5,6 @@ class PostCommentsController < ApplicationController
     comment = current_user.post_comments.new(post_comment_params)
     comment.post_id = post.id
     if comment.save
-      flash[:notice] = "コメントしました"
       redirect_to post_path(post)
     else
       render 'show'
@@ -14,7 +13,7 @@ class PostCommentsController < ApplicationController
 
   def destroy
     PostComment.find_by(id: params[:id]).destroy
-    redirect_to post_path(params[:post_id]), notice: 'コメントを削除しました'
+    redirect_to post_path(params[:post_id])
   end
 
   private
