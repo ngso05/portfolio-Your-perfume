@@ -12,6 +12,8 @@ class User < ApplicationRecord
          enum sex: { man: 0, woman: 1}
          attachment :image
 
+         validates :name, presence: true, uniqueness: true
+
          def active_for_authentication?
            super && (self.is_active == "有効")
          end

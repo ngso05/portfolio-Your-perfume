@@ -42,7 +42,7 @@
             score: <%= @post.rate_time %>,
           });
           </script>
-        </div> 
+        </div>
         <div class="star-rate-box">
           <div id="star-rate-price<%= @post.id %>">
             <p class="star-label">価格</p>
@@ -134,6 +134,7 @@
         <% end %>
       </div>
     </div>
+    <%= render 'posts/error', model: @post_comment %>
     <% if user_signed_in? %>
     <div class="review-box col-lg-12 col-m12 col12">
       <div class="comment-form">
