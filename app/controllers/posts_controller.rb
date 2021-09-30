@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.page(params[:page]).per(10)
-    @random = Post.order("RANDOM()").limit(3)
+    @random = Post.limit(3)
   end
 
   def edit
