@@ -9,7 +9,7 @@
         　<p class="profile-detail">性別:       <%= @user.sex_i18n %></p>
         </div>
         <div class="profile-detail">
-          <%= attachment_image_tag @post, :image, :size =>'200x200' %>
+          <%= attachment_image_tag @post, :image, width: '200' %>
         </div>
         <div class="star-rate-box">
           <div id="star-rate-smell<%= @post.id %>">
