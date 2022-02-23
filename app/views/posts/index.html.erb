@@ -8,7 +8,7 @@
         <div class="post-box-side">
           <p class="post-title"><%= postrandom.title %></p>
           <%= link_to post_path(postrandom.id) do %>
-          <%= attachment_image_tag postrandom, :image, :size =>'180x180' %>
+          <%= attachment_image_tag postrandom, :image, class:'post-thum' %>
           <% end %>
           <p class="user-name">ユーザーネーム   <%= postrandom.user.name %></p>
           <p class="post-review"><%= postrandom.review %></p>
@@ -23,7 +23,7 @@
           <div class="post-box-main">
             <p class="post-title"><%= postall.title %></p>
             <%= link_to post_path(postall.id) do %>
-            <%= attachment_image_tag postall, :image, :size =>'180x180' %>
+            <%= attachment_image_tag postall, :image, class:'post-thum' %>
             <% end %>
             <p class="user-name">ユーザーネーム   <%= postall.user.name %></p>
             <p class="post-review"><%= postall.review.truncate(30) %></p>
