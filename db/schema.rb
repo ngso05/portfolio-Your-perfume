@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_115045) do
+ActiveRecord::Schema.define(version: 2022_02_23_161900) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -29,15 +29,15 @@ ActiveRecord::Schema.define(version: 2021_09_21_115045) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.float "rate_easy"
+    t.float "rate_easy", default: 0.0
     t.string "image_id"
     t.text "review"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "rate_smell"
-    t.float "rate_time"
-    t.float "rate_price"
+    t.float "rate_smell", default: 0.0
+    t.float "rate_time", default: 0.0
+    t.float "rate_price", default: 0.0
   end
 
   create_table "users", force: :cascade do |t|
