@@ -25,7 +25,7 @@
             <%= attachment_image_tag postall, :image, :size =>'180x180' %>
             <% end %>
             <p class="user-name">ユーザーネーム   <%= postall.user.name %></p>
-            <p class="post-review"><%= postall.review %></p>
+            <p class="post-review"><%= postall.review.truncate(30)  %></p>
           </div>
           <% end %>
           <%= paginate @posts %>
