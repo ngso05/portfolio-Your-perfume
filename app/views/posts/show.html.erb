@@ -137,14 +137,14 @@
     <%= render 'posts/error', model: @post_comment %>
     <% if user_signed_in? %>
     <div class="review-box col-lg-12 col-m12 col12">
+      <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
       <div class="comment-form">
-        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-        <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
+      <%= f.text_area :comment, placeholder: "コメントをここに", size: "10x5", class: "form-control" %>
       </div>
       <div>
         <%= f.submit "送信する" %>
       </div>
-        <% end %>
+      <% end %>
     </div>
     <div class="user-comment">
       <p class="comment-count">コメント件数：<%= @post.post_comments.count %></p>
